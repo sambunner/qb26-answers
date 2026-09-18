@@ -1,0 +1,45 @@
+---
+title: "exercise1.Rmd"
+output: html_document
+date: "2026-09-18"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+#Path to working directory
+setwd("/Users/cmdb/qb26-answers/week1")
+
+#Load libraries
+library(tidyverse)
+library(ggplot2)
+
+#read in bed file
+header <- c( "chr", "start", "end", "count" )
+df_kc <- read_tsv( "hg19-kc-count.bed", col_names=header )
+
+#plot with ggplot and save
+unique(df_kc$chr)
+csomes <- c(unique(df_kc$chr))
+
+df_kc %>%
+  ggplot(aes(x=start, y=count))+
+  geom_line()+
+  facet_wrap(~chr, scales="free_x") +
+  labs(
+    x ="Position",
+    y = "Count"
+  ) +
+  theme_classic()
+
+ggsave( "exercise1.png", width = 14, height =8 )
+```
+
