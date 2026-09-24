@@ -1,0 +1,58 @@
+---
+title: "excercise2.Rmd"
+output: html_document
+date: "2026-09-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r}
+#Set working directory
+setwd("/Users/cmdb/qb26-answers/week1")
+
+# Load Libraries
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+#create dataframes
+header <- c( "chr", "start", "end", "count" )
+df_19 <- read_tsv( "hg19-kc-count.bed", col_names=header )
+df_16 <- read_tsv( "hg16-kc-count.bed", col_names=header )
+
+#Create combined dataframe
+df_merge <- bind_rows(hg19=df_19, hg16=df_16, .id= "assembly")
+```
+
+ggplot
+
+```{r}
+
+library(dplyr)
+
+#remove the chrMT and chrM
+df_merge_new <- df_merge %>%
+  filter(!chr %in% c("chrM", "chrMT"))
+
+df_merge_new %>%
+  ggplot(aes(x=start, y=count, color=assembly))+
+  geom_line()+
+  facet_wrap(~chr, scales="free")+
+  labs(
+    x= "Position",
+    y= "Count", 
+    caption = "Note: scales are not the same in X or Y!"
+  )+
+  theme_classic()
+#Save plot as png
+ggsave("exercise2.png", width = 20, height =8)
+```
+
+
