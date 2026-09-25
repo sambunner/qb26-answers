@@ -95,8 +95,27 @@ grep -F -e 'chr01_27915' -e 'chr01_28323' -e 'chr01_28652' -e 'chr01_29667' | cu
 
 ##########QUESTION3
 
+###This is my issue with freebayes:
+#(qb26) cmdb@QUANTBIO-26 variants % ./call_variants.sh
+#./call_variants.sh: line 18: vcfallelicprimitives: command not found
 
 
+#Question 3.1: Open the VCF with less -S and look at the header lines beginning with ##. Then find the #CHROM line. What are the last 10 columns, and where did those names come from?
+
+#Answer: The last columns are the 10 sample names, their names come from the name of the bam files. 
+
+
+#Question 3.2: Why does the ploidy argument matter here? What would a genotype look like if you had told FreeBayes these samples were diploid?
+
+#Answer: Ploidy matters to determine what liklihood the genotype is at that locus. If the samples are haploid then the FreeBayes just has to decide if the genotype is from one allele, either A or a. If its diploid, then it has to consider the reads as belonging to two alleles: AA, Aa, or aa. 
+
+##########QUESTION4
+#Question 4.1: Interpret this figure in two or three sentences in your own words. Does it look as expected? Why or why not? Bonus: what is the name of this distribution?
+
+
+#Question 4.2: Do you notice any patterns? What do the transitions indicate?
+
+#Question 4.3: Do the samples that looked like BY in your IGV screenshot from Exercise 2 also look like BY at the left end of chrI here? Do any samples appear to be mostly one parent across the whole genome?
 ####
 
 
