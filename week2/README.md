@@ -112,10 +112,19 @@ grep -F -e 'chr01_27915' -e 'chr01_28323' -e 'chr01_28652' -e 'chr01_29667' | cu
 ##########QUESTION4
 #Question 4.1: Interpret this figure in two or three sentences in your own words. Does it look as expected? Why or why not? Bonus: what is the name of this distribution?
 
+This figure is telling you the allele frequency of 
+Many alleles are present about 50% of the time, which i think makes sense because the strains are a hybrid of the lab strain and the parental strain. I think it is a normal distrubution, because each strain is equally likely to share its alleles. 
 
 #Question 4.2: Do you notice any patterns? What do the transitions indicate?
+It looks like the first part of the chromosome is from the WT strain and then the rest of the chromosome belongs to the other strain. 
 
 #Question 4.3: Do the samples that looked like BY in your IGV screenshot from Exercise 2 also look like BY at the left end of chrI here? Do any samples appear to be mostly one parent across the whole genome?
+
+#I think it looks like the IGV snapshot from chromosome 2 because the plot shows that the sample is mostly from the reference parent genome, which is consistent with the IGV track with few SNPs. Chromosome I appears to be the only one that is from one parent, probably because its a very small chromosome and has fewer crossover events?
+It looks like each strain is a hybrid of both parents. 
+
+
+
 ####
 
 
