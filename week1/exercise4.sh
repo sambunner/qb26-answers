@@ -35,7 +35,7 @@ bedtools sort -i hg19-kc.bed > sorted_hg19-kc.bed
 #Use bedtools closest -d on the two sorted files, with -t first to break ties
 #RESUBMISSION EDIT: FIXED THIS COMMAND
 #bedtools closest -a sorted_hg19-kc.bed -b sorted_subset_snps.bed -d -t first > out.bed
-
+bedtools closest -a sorted_subset_snps.bed -b sorted_hg19-kc.bed -d -t first > out.bed
 #How many SNPs are inside of a gene?
 awk '$11 == 0' out.bed | wc -l
 #  15
