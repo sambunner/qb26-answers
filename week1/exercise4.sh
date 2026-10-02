@@ -33,24 +33,16 @@ bedtools sort -i subset_snps.bed > sorted_subset_snps.bed
 bedtools sort -i hg19-kc.bed > sorted_hg19-kc.bed
 
 #Use bedtools closest -d on the two sorted files, with -t first to break ties
+#RESUBMISSION EDIT: FIXED THIS COMMAND
+#bedtools closest -a sorted_hg19-kc.bed -b sorted_subset_snps.bed -d -t first > out.bed
 
-bedtools closest -a sorted_hg19-kc.bed -b sorted_subset_snps.bed -d -t first > out.bed
 #How many SNPs are inside of a gene?
 awk '$11 == 0' out.bed | wc -l
-#  17
-#  Answer: there are 17 genes in the sorted_hg19-kc.bed file that has at least 1 SNP within 0bp (inside) of the gene. 
+#  15
+#  Answer: there are 15 genes in the sorted_hg19-kc.bed file that has at least 1 SNP within 0bp (inside) of the gene. 
 
 
 #What is the range of distances for the ones outside a gene?
-#Maximum 
-sort -k11,11nr out.bed | head
+less out.bed
+#Answer: The range is between 1664-22944 bp away from a gene. 
 
-#36227401
-sort -k11,11r out.bed | head
-
-#Minimum that is not zero, extract lines where column 11 is greater than zero and then sort by column 11 as a numeric number. 
-awk '$11 > 0' out.bed | sort -k11,11n | head
-#1664
-
-
-#Answer: the output is either 1664 bp-1,592528 bp away from a gene. 
