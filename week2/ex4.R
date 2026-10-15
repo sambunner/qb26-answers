@@ -41,10 +41,14 @@ ggplot(A01_62, aes(x = position, y = genotype, color = genotype)) +
   ylab("Genotype")+
   theme_classic()
   
-ggplot(gt_long, aes(x = position, y = genotype, color = genotype)) +
+  
+  
+#####CORRECTION FOR WEEK 2
+  #here is my corrected code. i ashed hop for help with fixing the y-axis because i did not consider using 0. 
+ggplot(gt_long, aes(x = position, y= 0, color = genotype)) +
     geom_point() +
-    facet_grid(chromosome ~ sample) +
-    xlab("Position") +
+    facet_wrap(chromosome ~ sample, ncol = 10) +
+    xlab(NULL) +
     ylab("Genotype") +
     theme_classic()
   
